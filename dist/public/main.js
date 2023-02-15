@@ -1,6 +1,8 @@
-HFS.onEvent('afterEntryName', ({ entry }) =>
-    /\.(mp3|wav|aac|ogg|flac)$/.test(entry.n) &&
-        `<button class='play-button' onclick='play("${entry.n}")' />`)
+HFS.onEvent('afterEntryName', ({ entry }) =>{
+    if (/\.(mp3|wav|aac|ogg|flac|m4a)$/.test(entry.n)){
+    var src = entry.n.replace("'","%27")
+	return `<button class='play-button' onclick='play("${src}")' />`
+}})
 
 function play(name = '') {
     const root = document.getElementById('player')
